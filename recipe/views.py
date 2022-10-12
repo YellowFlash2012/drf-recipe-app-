@@ -5,7 +5,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter, openApiTypes
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
+
+from drf_spectacular.types import OpenApiTypes
 
 from core.models import Ingredient, Recipe, Tag
 from recipe import serializers
@@ -16,12 +18,12 @@ from recipe import serializers
         parameters=[
             OpenApiParameter(
                 'tags',
-                openApiTypes.STR,
+                OpenApiTypes.STR,
                 description='Comma separated list of tag IDs to filter'
             ),
             OpenApiParameter(
                 'ingredients',
-                openApiTypes.STR,
+                OpenApiTypes.STR,
                 description='Comma separated list of ingredient IDs to filter'
             ),
         ]
@@ -83,7 +85,7 @@ class AllUserRecipeViewSet(viewsets.ModelViewSet):
         parameters=[
             OpenApiParameter(
                 'assigned_only',
-                openApiTypes.INT, enum=[0,1],
+                OpenApiTypes.INT, enum=[0,1],
                 description='Filter by items assigned to recipes'
             ),
             
